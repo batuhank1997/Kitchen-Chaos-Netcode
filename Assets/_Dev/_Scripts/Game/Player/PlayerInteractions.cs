@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class PlayerInteractions : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
+    
+    public Action<ClearCounter> OnSelectedCounterChanged;
     
     private Vector3 lastInteractDir;
     private ClearCounter selectedCounter;
@@ -16,6 +19,8 @@ public class PlayerInteractions : MonoBehaviour
 
     private void OnInteractAction()
     {
+        if (!selectedCounter) return;
+        
         Vector2 inputVector = playerController.GameInput.GetMovementVectorNormalized();
 
         var moveDir = new Vector3(inputVector.x, 0, inputVector.y);
@@ -59,7 +64,22 @@ public class PlayerInteractions : MonoBehaviour
             if (hitInfo.transform.TryGetComponent(out ClearCounter clearCounter))
             {
                 clearCounter.Interact();
+                
+                if (clearCounter != selectedCounter)
+                    SetSelectedCounter(clearCounter);
+                else
+                    SetSelectedCounter(null);
+            }
+            else
+            {
+                SetSelectedCounter(null);
             }
         }
+    }
+
+    void SetSelectedCounter(ClearCounter clearCounter)
+    {
+        selectedCounter = clearCounter;
+        OnSelectedCounterChanged?.Invoke(selectedCounter);
     }
 }

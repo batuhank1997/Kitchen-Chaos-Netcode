@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerInteractions playerInteractions;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerAnimator playerAnimator;
+
     
     public PlayerInteractions PlayerInteractions => playerInteractions;
     public PlayerMovement PlayerMovement => playerMovement;
