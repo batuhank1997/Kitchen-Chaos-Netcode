@@ -799,6 +799,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1558176363}
   - component: {fileID: 1558176364}
+  - component: {fileID: 1558176367}
+  - component: {fileID: 1558176366}
   - component: {fileID: 1558176365}
   m_Layer: 0
   m_Name: Player
@@ -835,9 +837,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616dfe4e515f9834eaade0a27fd625fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rotationSpeed: 10
   gameInput: {fileID: 520596730}
+  playerInteractions: {fileID: 1558176366}
+  playerMovement: {fileID: 1558176367}
+  playerAnimator: {fileID: 1558176365}
 --- !u!114 &1558176365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,8 +853,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88811e54501c5d4986a75765ad47046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1558176364}
+  playerController: {fileID: 1558176364}
   animator: {fileID: 1655391499}
+--- !u!114 &1558176366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558176362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31abcfbefe6a9c40a515234ba85b75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1558176364}
+--- !u!114 &1558176367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558176362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f2e18b2884196439cf940b47bb1eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1558176364}
+  gameInput: {fileID: 520596730}
+  moveSpeed: 10
+  rotationSpeed: 10
 --- !u!95 &1655391499 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6024899996280613204, guid: 1c5dda3c7cd3cf742afcade5419faeab,

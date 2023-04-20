@@ -1,22 +1,29 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private PlayerController playerController;
+
+    [SerializeField] private GameInput gameInput;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private GameInput gameInput;
-
+    
     public bool IsWalking { get; private set; }
 
-    private void Update()
+    // Start is called before the first frame update
+    void Start()
     {
-        HandleMovement();
-        HandleInteractions();
+        
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        HandleMovement();
+    }
+    
     void HandleMovement()
     {
         var deltaTime = Time.deltaTime;
@@ -59,20 +66,5 @@ public class Player : MonoBehaviour
         
         IsWalking = moveDir != Vector3.zero;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, rotationSpeed * deltaTime);
-    }
-    
-    
-    void HandleInteractions()
-    {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-
-        var moveDir = new Vector3(inputVector.x, 0, inputVector.y);
-
-        var interactDistance = 2f;
-
-        if (Physics.Raycast(transform.position, moveDir, out RaycastHit hitInfo, interactDistance))
-        {
-            print(hitInfo.collider.name);
-        }
     }
 }

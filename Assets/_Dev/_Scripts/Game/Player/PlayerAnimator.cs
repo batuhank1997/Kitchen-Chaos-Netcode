@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerController playerController;
+
     [SerializeField] private Animator animator;
 
     private void Start()
@@ -15,6 +16,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool(Keys.ANIM_IS_WALKING, player.IsWalking);
+        animator.SetBool(Keys.ANIM_IS_WALKING, playerController.PlayerMovement.IsWalking);
     }
 }
