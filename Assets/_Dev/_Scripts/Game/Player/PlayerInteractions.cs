@@ -48,6 +48,7 @@ public class PlayerInteractions : MonoBehaviour
     
     void HandleInteractions()
     {
+        Debug.Log("HANDLE_INTERACTIONS");
         Vector2 inputVector = playerController.GameInput.GetMovementVectorNormalized();
 
         var moveDir = new Vector3(inputVector.x, 0, inputVector.y);
@@ -67,14 +68,15 @@ public class PlayerInteractions : MonoBehaviour
                 
                 if (clearCounter != selectedCounter)
                     SetSelectedCounter(clearCounter);
-                else
-                    SetSelectedCounter(null);
+                
             }
             else
             {
                 SetSelectedCounter(null);
             }
         }
+        else
+            SetSelectedCounter(null);
     }
 
     void SetSelectedCounter(ClearCounter clearCounter)

@@ -6,6 +6,6 @@ public class ClearCounter : MonoBehaviour
 {
     public void Interact()
     {
-        print(gameObject.name);
+        
     }
 }
