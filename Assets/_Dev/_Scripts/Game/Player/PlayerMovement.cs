@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
-
-    [SerializeField] private GameInput gameInput;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
     
     public bool IsWalking { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         HandleMovement();
@@ -28,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var deltaTime = Time.deltaTime;
         
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector2 inputVector = GameInput.I.GetMovementVectorNormalized();
 
         var moveDir = new Vector3(inputVector.x, 0, inputVector.y);
         

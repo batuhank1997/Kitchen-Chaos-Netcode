@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameInput : MonoBehaviour
+public class GameInput : Singleton<GameInput>
 {
     private PlayerInputActions playerInputActions;
-    public Action OnInteractAction;
+    public static Action OnInteractAction;
     
     private void Awake()
     {

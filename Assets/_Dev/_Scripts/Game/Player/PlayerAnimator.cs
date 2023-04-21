@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
-
     [SerializeField] private Animator animator;
 
     private void Start()
