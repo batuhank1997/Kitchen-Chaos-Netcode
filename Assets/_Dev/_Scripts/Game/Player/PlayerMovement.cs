@@ -10,9 +10,22 @@ public class PlayerMovement : NetworkBehaviour
     
     public bool IsWalking { get; private set; }
 
+    private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    public override void OnNetworkSpawn()
+    {
+        randomNumber.OnValueChanged += (int prevVal, int newVal) => Debug.Log(randomNumber.Value);
+        base.OnNetworkSpawn();
+    }
+
     void Update()
     {
         if (!IsOwner) return;
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            randomNumber.Value = Random.Range(0, 100);
+        }
 
         HandleMovement();
     }
@@ -22,8 +35,9 @@ public class PlayerMovement : NetworkBehaviour
         var deltaTime = Time.deltaTime;
         
         Vector2 inputVector = GameInput.I.GetMovementVectorNormalized();
-
         var moveDir = new Vector3(inputVector.x, 0, inputVector.y);
+        
+       
         
         var moveDistance = moveSpeed * deltaTime;
         var playerRadius = 0.7f;

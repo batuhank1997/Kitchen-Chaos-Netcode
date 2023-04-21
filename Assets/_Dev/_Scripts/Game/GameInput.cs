@@ -8,6 +8,7 @@ public class GameInput : Singleton<GameInput>
 {
     private PlayerInputActions playerInputActions;
     public static Action OnInteractAction;
+    public static Action OnShootAction;
     
     private void Awake()
     {
@@ -15,11 +16,17 @@ public class GameInput : Singleton<GameInput>
         playerInputActions.Player.Enable();
         
         playerInputActions.Player.Interact.performed += InteractOnPerformed;
+        playerInputActions.Player.Shoot.performed += InteractOnPerformedShoot;
     }
 
     private void InteractOnPerformed(InputAction.CallbackContext obj)
     {
         OnInteractAction?.Invoke();
+    }
+    
+    private void InteractOnPerformedShoot(InputAction.CallbackContext obj)
+    {
+        OnShootAction?.Invoke();
     }
 
     public Vector2 GetMovementVectorNormalized()
